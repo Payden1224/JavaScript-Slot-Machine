@@ -102,12 +102,41 @@ const transpose = (reels) => {
 
 const printRows = (rows) => {
     for (const row of rows) {
-        let rowString = "A";
-        for (const [i, symbol] of rows.entries()) {
+        let rowString = "";
+        for (const [i, symbol] of row.entries()) {
             rowString += symbol
+            if (i != row.lenght - 1) {
+                rowstring += " | "
+            }
         }
+        console.log(rowString)
     }
 } 
+
+const getWinnings = (rows, bet, lines) => {
+    let winnings = 0;
+
+    for (let row = 0; row < lines; row++) {
+        const symbols = rows[row];
+        let allSame = true;
+
+        for (const symbol of symbols) {
+            if (symbol != symbols) {
+                if (symbol != symbols) {
+                    allSame = false;
+                    break;
+                }
+            }
+
+            if (allSame) {
+                winnings += bet * SYMBOL_VALUES[symbols[0]]
+            }
+        }
+
+        return winnings;
+
+    }
+}
 
 let balance = deposit();
 const numberOfLines = getNumberOfLines();
